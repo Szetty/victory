@@ -1,0 +1,26 @@
+Metrics/LineLength:
+  Max: 120
+Style/GlobalVars:
+  Enabled: false
+Style/BlockDelimiters:
+  Enabled: false
+Style/MutableConstant:
+  Enabled: false
+Lint/NestedMethodDefinition:
+  Enabled: false
+Layout/SpaceAroundOperators:
+  Enabled: false
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+AllCops:
+  TargetRubyVersion: 2.6
+Style/WordArray:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 20
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
