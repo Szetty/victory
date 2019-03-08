@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-Usage can be found here [Usage.md](https://github.com/Szetty/victory/blob/master/USAGE.md).
+Can be found at [usage](https://github.com/Szetty/victory/blob/master/USAGE.md).
 
 ## Development
 
