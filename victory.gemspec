@@ -25,7 +25,8 @@ Gem::Specification.new do |spec|
     'ext/containers/bst/extconf.rb',
     'ext/containers/deque/extconf.rb',
     'ext/containers/rbtree_map/extconf.rb',
-    'ext/containers/splaytree_map/extconf.rb'
+    'ext/containers/splaytree_map/extconf.rb',
+    'ext/containers/xor_list/extconf.rb'
   ]
 
   spec.add_development_dependency 'bundler', '~> 1.17'

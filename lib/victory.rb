@@ -9,4 +9,6 @@ end
 module Algorithms; end
 module Containers; end
 
+require 'XORList'
+
 require_all 'lib/**/*rb'
