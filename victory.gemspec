@@ -9,6 +9,11 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Arnold Szederjesi']
   spec.email         = ['szederjesiarnold@gmail.com']
 
+  spec.homepage      = 'https://github.com/Szetty/victory'
+  spec.metadata      = {
+    'source_code_uri' => 'https://github.com/Szetty/victory',
+    'documentation_uri' => 'https://www.rubydoc.info/github/Szetty/victory/master'
+  }
   spec.summary       = 'A gem providing all useful algorithms and data structures for programming contests'
   spec.license       = 'MIT'
 
