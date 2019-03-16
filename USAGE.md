@@ -10,6 +10,7 @@ In this markdown you will see the usage of all the datastructures and algorithms
 * [Struct](#struct)
 * [OpenStruct](#openstruct)
 * [Tuple](#tuple)
+* [Graph](#graph)
 
 <a name="array" />
 
@@ -137,6 +138,8 @@ x
 # => #<OpenStruct a=0, b=123>
 ```
 
+For the following datastructures you will need to include `Containers` or prefix every container with it. 
+
 <a name="tuple" />
 
 ## Tuple
@@ -151,6 +154,24 @@ c
 # => 3
 t[2]
 # => 2
+```
+
+<a name="graph" />
+
+## Graph
+
+### Graph (undirected)
+```ruby
+g = Graph[1,2, 2,3, 2,4]
+g.to_s
+# => "(1=2)(2=3)(2=4)"
+```
+
+### Directed Graph
+```ruby
+dg = DirectedGraph[1,2 ,2,3 ,2,4, 4,5, 6,4, 1,6]
+dg.to_s
+# => "(1-2)(1-6)(2-3)(2-4)(4-5)(6-4)"
 ```
 
 # Other useful links
