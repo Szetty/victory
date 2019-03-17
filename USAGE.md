@@ -11,6 +11,7 @@ In this markdown you will see the usage of all the datastructures and algorithms
 * [OpenStruct](#openstruct)
 * [Tuple](#tuple)
 * [Graph](#graph)
+* [IOHelpers](#io-helpers)
 
 <a name="array" />
 
@@ -174,7 +175,70 @@ dg.to_s
 # => "(1-2)(1-6)(2-3)(2-4)(4-5)(6-4)"
 ```
 
+### Dijkstra's algorithm
+```ruby
+g = Containers::Graph[1,2, 1,3, 2,4, 4,5, 3,5]
+weights = {[1,2] => 2, [2,4] => 1, [4,5] => 1, [1,3] => 1, [3,5] => 5}
+g.dijkstra_shortest_paths(weights, 1)
+# => {1=>[1], 2=>[1, 2], 3=>[1, 3], 4=>[1, 2, 4], 5=>[1, 2, 4, 5]} 
+g.dijkstra_shortest_path(weights, 1, 5)
+# => [1, 2, 4, 5]
+```
+
+### Bellman Ford's algorithm
+```ruby
+g = Containers::Graph[1,2, 1,3, 2,4, 4,5, 3,5]
+weights = {[1,2] => 2, [2,4] => 1, [4,5] => 1, [1,3] => 1, [3,5] => 5}
+g.bellman_ford_shortest_paths(weights, 1)
+# => {1=>[1], 2=>[1, 2], 3=>[1, 3], 4=>[1, 2, 4], 5=>[1, 2, 4, 5]} 
+```
+
+### Topological sort
+```ruby
+g = Containers::Graph[1,2, 1,3, 2,4, 4,5, 3,5]
+g.topsort_iterator.to_a
+# => [1, 3, 2, 4, 5]
+```
+
+<a name="io-helpers" />
+
+## IO Helpers
+
+### Reader
+Can read from `file` or `string`.
+```ruby
+Reader.file("a")
+# => ["1,2,3", "4,5,6", "7,8,9"] 
+Reader.file("a", col_sep: ",")
+# => [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]] 
+Reader.file("a", col_sep: ",", as: "i")
+# => [[1, 2, 3], [4, 5, 6], [7, 8, 9]] 
+Reader.file("a", col_sep: ",", mapper: ->(x) {x.to_i * x.to_i})
+# => [[1, 4, 9], [16, 25, 36], [49, 64, 81]] 
+Reader.string("0.1#0.2#0.3", line_sep: "#", as: 'r')
+# => [(1/10), (1/5), (3/10)]  
+```
+Supported types for `as` are:
+* `s` for string (default)
+* `i` for integer
+* `f` for float
+* `r` for rational
+* `c` for complex
+* `sym` for symbol
+
+### Writer
+Can write to `file` or `string`.
+```ruby
+a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+Writer.string(a, line_sep: '@', col_sep: '.')
+# => "1.2.3@4.5.6@7.8.9" 
+Writer.string(a, line_sep: "\n", col_sep: ' ', mapper: ->(x) {"0,#{x}"})
+# => "0,1 0,2 0,3\n0,4 0,5 0,6\n0,7 0,8 0,9" 
+Writer.file("b", a, line_sep: "\n", col_sep: ' ', mapper: ->x {"0,#{x}"}) 
+```
+
 # Other useful links
 
 * https://github.com/kumar91gopi/Algorithms-and-Data-Structures-in-Ruby/
 * https://github.com/sagivo/algorithms
+* https://github.com/SciRuby/rb-gsl
