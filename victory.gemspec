@@ -38,7 +38,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rake-compiler'
-  spec.add_development_dependency 'require_all'
   spec.add_development_dependency 'rgl', '~> 0.5.4'
   spec.add_development_dependency 'rspec'
 end
