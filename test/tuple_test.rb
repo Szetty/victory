@@ -27,6 +27,8 @@ class TupleTest < Minitest::Test
   def test_array_with_tuple_flatten
     a = [T[1, 2], T[3, 4]]
     assert_equal 2, a.size
+    a = a.flatten
+    assert_equal 2, a.size
     a.each(&@is_tuple)
   end
 end

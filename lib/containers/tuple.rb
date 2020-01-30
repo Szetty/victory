@@ -1,5 +1,6 @@
 module Containers
   class Tuple
+    include Enumerable
     @elements = []
     def self.[](*elements)
       new(elements)
@@ -13,8 +14,8 @@ module Containers
       @elements[idx]
     end
 
-    def to_a
-      @elements.to_a
+    def each(&block)
+      @elements.each(&block)
     end
 
     def to_s

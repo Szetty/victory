@@ -29,3 +29,10 @@ require 'containers/list'
 require 'io_helpers/reader'
 require 'io_helpers/writer'
 require 'include_rgl'
+
+require 'set'
+Containers::Set = Set
+require 'ostruct'
+Containers::OpenStruct = OpenStruct
+require 'matrix'
+Containers::Matrix = Matrix

@@ -4,14 +4,49 @@ In this markdown you will see the usage of all the datastructures and algorithms
 
 # Data Structures
 
+* [Ranges and Loops](#ranges)
+* [Complex](#complex)
 * [Array](#array)
 * [Hash](#hash)
-* [Set](#set)
 * [Struct](#struct)
+* [Matrix](#matrix)
+* [Set](#set)
 * [OpenStruct](#openstruct)
 * [Tuple](#tuple)
 * [Graph](#graph)
 * [IOHelpers](#io-helpers)
+
+<a name="ranges" />
+
+## Ranges and loops
+
+```ruby
+5.times { |x| puts x } # displays numbers from 0 to 5
+3.upto(7) { |x| puts x } # displays numbers from 3 to 7
+5.downto(3) { |x| puts x } # displays numbers from 5 to 3
+0.step(10, 2) { |x| puts x } # displays 0, 2, 4, 6, 8, 10
+12.step(6, -2) { |x| puts x } # displays 12, 10, 8, 6
+(0...1).step(0.1) { |x| puts x } # displays 0.0, 0.1, ... , 0.8, 0.9
+loop { |x| puts x } # infinite loop
+```
+
+<a name="complex" />
+
+## Complex
+
+```ruby
+a = 1+2i
+# => (1+2i)
+a.real
+# => 1
+a.imag
+# => 2
+a.rect
+# => [1, 2]
+r, i = a.rect
+r + i.i
+# => (1+2i)
+```
 
 <a name="array" />
 
@@ -58,23 +93,6 @@ a[1]
 # => 2 
 ```
 
-<a name="set" />
-
-## Set 
-
-```ruby
-require 'set'
-
-s = Set.new
-# => #<Set: {}> 
-s << :a
-# => #<Set: {:a}> 
-s << :a
-# => #<Set: {:a}> 
-s << :b
-# => #<Set: {:a, :b}> 
-```
-
 <a name="struct" />
 
 ## Struct
@@ -92,7 +110,7 @@ my_face.hair
 my_face.nose
 # NoMethodError: undefined method `nose' for #<struct Face hair=:blond, eyes=:blue, skin=:awesome>
 my_face[:nose]
-# NameError: no member 'nose' in struc
+# NameError: no member 'nose' in struct
  
 
 class PayChecks < Struct.new(:week1, :week2, :week3, :week4)
@@ -107,13 +125,45 @@ pay_checks.total
 # => 1245 
 ```
 
+For the following data structures you will need to include `Containers` or prefix every container with it.
+
+<a name="matrix" />
+
+## Matrix
+
+```ruby
+m = Matrix[[1, 2, 3], [3, 4, 5], [6, 7, 8]]
+# => Matrix[[1, 2, 3], [3, 4, 5], [6, 7, 8]]
+m[0,0]
+# => 1
+m[1,1]
+# => 4
+m.row(2)
+# => Vector[6, 7, 8]
+m.column(1)
+# => Vector[2, 4, 7]
+```
+
+<a name="set" />
+
+## Set 
+
+```ruby
+s = Set.new
+# => #<Set: {}> 
+s << :a
+# => #<Set: {:a}> 
+s << :a
+# => #<Set: {:a}> 
+s << :b
+# => #<Set: {:a, :b}> 
+```
+
 <a name="openstruct" />
 
 ## OpenStruct
 
 ```ruby
-require 'ostruct'
-
 x = OpenStruct.new
 # => #<OpenStruct> 
 
@@ -137,9 +187,7 @@ x[:b]  = 123
 # => 123 
 x
 # => #<OpenStruct a=0, b=123>
-```
-
-For the following datastructures you will need to include `Containers` or prefix every container with it. 
+``` 
 
 <a name="tuple" />
 
@@ -241,4 +289,4 @@ Writer.file("b", a, line_sep: "\n", col_sep: ' ', mapper: ->x {"0,#{x}"})
 
 * https://github.com/kumar91gopi/Algorithms-and-Data-Structures-in-Ruby/
 * https://github.com/sagivo/algorithms
-* https://github.com/SciRuby/rb-gsl
+* https://github.com/SciRuby/
