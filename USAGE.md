@@ -15,6 +15,7 @@ For them to work you firstly need to require the library with `require 'victory'
 * [Set](#set)
 * [OpenStruct](#openstruct)
 * [Tuple](#tuple)
+* [Bitset](#bitset)
 * [Graph](#graph)
 * [IOHelpers](#io-helpers)
 * [Concurrent Structures](#concurrent)
