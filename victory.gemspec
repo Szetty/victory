@@ -1,7 +1,7 @@
-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'victory/version'
+require_relative 'extensions'
 
 Gem::Specification.new do |spec|
   spec.name          = 'victory'
@@ -25,19 +25,13 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib', 'ext']
-  spec.extensions    = [
-    'ext/algorithms/string/extconf.rb',
-    'ext/containers/bst/extconf.rb',
-    'ext/containers/deque/extconf.rb',
-    'ext/containers/rbtree_map/extconf.rb',
-    'ext/containers/splaytree_map/extconf.rb',
-    'ext/containers/xor_list/extconf.rb'
-  ]
+  spec.extensions    = extensions.map { |extension| "ext/#{extension.path}/extconf.rb" }
 
-  spec.add_development_dependency 'bundler', '~> 1.17'
+  spec.add_development_dependency 'bundler', '~> 2.1'
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rake-compiler'
   spec.add_development_dependency 'rgl', '~> 0.5.4'
   spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'concurrent-ruby', '~> 1.1.6'
 end

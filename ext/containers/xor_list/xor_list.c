@@ -111,7 +111,7 @@ static VALUE xor_list_each(VALUE self) {
 static VALUE list;
 static VALUE containers;
 
-void Init_XORList() {
+void Init_CXORList() {
     containers = rb_define_module("Containers");
     list = rb_define_class_under(containers, "XORList", rb_cObject);
     rb_define_alloc_func(list, xor_list_alloc);

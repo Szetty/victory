@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TupleTest < Minitest::Test
   def setup
-    @is_tuple = method(:assert_instance_of).curry[Tuple]
+    @is_tuple = -> x { assert_instance_of(Tuple, x) }
   end
 
   def test_creation

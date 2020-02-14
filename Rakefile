@@ -11,12 +11,10 @@ require "rake/extensiontask"
 
 task :build => :compile
 
-Rake::ExtensionTask.new('algorithms/string')        { |ext| ext.name = "CString" }
-Rake::ExtensionTask.new('containers/deque')         { |ext| ext.name = "CDeque" }
-Rake::ExtensionTask.new('containers/bst')           { |ext| ext.name = "CBst" }
-Rake::ExtensionTask.new('containers/rbtree_map')    { |ext| ext.name = "CRBTreeMap" }
-Rake::ExtensionTask.new('containers/splaytree_map') { |ext| ext.name = "CSplayTreeMap" }
-Rake::ExtensionTask.new('containers/xor_list') { |ext| ext.name = 'XORList' }
+require_relative 'extensions'
+extensions.each do |extension|
+  Rake::ExtensionTask.new(extension.path) { |ext| ext.name = extension.name }
+end
 
 require 'rspec/core/rake_task'
 
