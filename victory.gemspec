@@ -35,4 +35,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'concurrent-ruby', '~> 1.1.6'
   spec.add_runtime_dependency 'rgl', '~> 0.5.4'
+  spec.add_runtime_dependency 'abstract_method'
 end

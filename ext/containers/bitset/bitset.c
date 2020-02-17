@@ -76,7 +76,7 @@ static VALUE rb_bitset_initialize(VALUE self, VALUE ary) {
     return self;
 }
 
-static VALUE rb_bitset_size(VALUE self, VALUE len) {
+static VALUE rb_bitset_size(VALUE self) {
     Bitset * bs = get_bitset(self);
     return INT2NUM(bs->len);
 }
@@ -136,6 +136,36 @@ static VALUE rb_bitset_set(int argc, VALUE * argv, VALUE self) {
             int idx = NUM2INT(index);
             validate_index(bs, idx);
             _set_bit(bs, idx);
+        }
+    }
+    return Qtrue;
+}
+
+static VALUE rb_bitset_flip(int argc, VALUE * argv, VALUE self) {
+    int i;
+    Bitset * bs = get_bitset(self);
+
+    if (argc == 1 && rb_obj_is_kind_of(argv[0], rb_const_get(rb_cObject, rb_intern("Array")))) {
+        for(i = 0; i < RARRAY_LEN(argv[0]); i++) {
+            VALUE index = RARRAY_PTR(argv[0])[i];
+            int idx = NUM2INT(index);
+            validate_index(bs, idx);
+            if (_get_bit(bs, idx) == 0) {
+                _set_bit(bs, idx);
+            } else {
+                _clear_bit(bs, idx);
+            }
+        }
+    } else {
+        for(i = 0; i < argc; i++) {
+            VALUE index = argv[i];
+            int idx = NUM2INT(index);
+            validate_index(bs, idx);
+            if (_get_bit(bs, idx) == 0) {
+                _set_bit(bs, idx);
+            } else {
+                _clear_bit(bs, idx);
+            }
         }
     }
     return Qtrue;
@@ -604,9 +634,11 @@ void Init_CBitset() {
     rb_define_method(cBitset, "initialize", rb_bitset_initialize, 1);
     rb_define_method(cBitset, "reset!", rb_bitset_reset, 0);
     rb_define_method(cBitset, "size", rb_bitset_size, 0);
+    rb_define_alias(cBitset, "length", "size");
     rb_define_method(cBitset, "[]", rb_bitset_aref, 1);
     rb_define_method(cBitset, "[]=", rb_bitset_aset, 2);
     rb_define_method(cBitset, "set", rb_bitset_set, -1);
+    rb_define_method(cBitset, "flip", rb_bitset_flip, -1);
     rb_define_method(cBitset, "clear", rb_bitset_clear, -1);
     rb_define_method(cBitset, "set?", rb_bitset_set_p, -1);
     rb_define_method(cBitset, "clear?", rb_bitset_clear_p, -1);
@@ -634,6 +666,7 @@ void Init_CBitset() {
     rb_define_method(cBitset, "hamming", rb_bitset_hamming, 1);
     rb_define_method(cBitset, "each", rb_bitset_each, 0);
     rb_define_method(cBitset, "to_s", rb_bitset_to_s, 0);
+    rb_define_alias(cBitset, "inspect", "to_s");
     rb_define_singleton_method(cBitset, "from_s", rb_bitset_from_s, 1);
     rb_define_method(cBitset, "marshal_dump", rb_bitset_marshall_dump, 0);
     rb_define_method(cBitset, "marshal_load", rb_bitset_marshall_load, 1);

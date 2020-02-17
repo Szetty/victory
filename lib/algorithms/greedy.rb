@@ -1,6 +1,6 @@
-module Greedy
+module Algorithms::Greedy
   module Solution
-    attr_reader :score, :next_solutions
+    abstract_method  :score, :next_solutions
   end
 
   def self.init(solution)
@@ -19,7 +19,7 @@ module Greedy
       end
     end
 
-    def current_solution
+    def best_solution
       @solutions_history[-1]
     end
   end

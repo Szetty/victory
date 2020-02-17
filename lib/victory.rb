@@ -1,5 +1,7 @@
 require "victory/version"
 
+require 'abstract_method'
+
 module Algorithms; end
 module Containers; end
 
@@ -7,6 +9,11 @@ require 'algorithms/search'
 require 'algorithms/sort'
 require 'algorithms/string'
 require 'algorithms/greedy'
+require 'algorithms/genetic_algorithm/genetic_algorithm'
+require 'algorithms/genetic_algorithm/solutions/bitset'
+require 'algorithms/genetic_algorithm/solutions/array'
+require 'algorithms/genetic_algorithm/solutions/permutation'
+require 'algorithms/genetic_algorithm/solutions/combination'
 require 'containers/prefix_tree'
 require 'containers/heap'
 require 'containers/stack'
