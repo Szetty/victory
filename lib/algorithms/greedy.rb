@@ -1,6 +1,11 @@
 module Algorithms::Greedy
   module Solution
     abstract_method  :score, :next_solutions
+    attr_reader :data
+
+    def initialize(data)
+      @data = data
+    end
   end
 
   def self.init(solution)

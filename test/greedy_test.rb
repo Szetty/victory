@@ -3,10 +3,6 @@ require "test_helper"
 class GreedyTest < Minitest::Test
   class TestSolution
     include Algorithms::Greedy::Solution
-    attr_reader :data
-    def initialize(data)
-      @data = data
-    end
 
     def score
       -@data.size

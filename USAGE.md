@@ -547,6 +547,49 @@ Thread-safe variables:
     A counting-based locking mechanism that uses permits.
 *   [AtomicMarkableReference](http://ruby-concurrency.github.io/concurrent-ruby/master/Concurrent/AtomicMarkableReference.html)
 
+# Algorithms
+
+* [Greedy](#greedy)
+* [Genetic Algorithm](#genetic)
+
+<a name="greedy" />
+
+## Greedy
+
+```ruby
+class TestSolution
+    include Algorithms::Greedy::Solution
+    
+    def score; @data; end
+    
+    def next_solutions
+      [
+        TestSolution.new(@data),
+        TestSolution.new(@data + 1),
+        TestSolution.new(@data - 1),
+      ]
+    end
+end
+
+initial_solution = TestSolution.new(0)
+g = Algorithms::Greedy.init(initial_solution)
+g.run(10)
+g.best_solution.data
+# => 10
+```
+
+<a name="genetic" />
+
+## Genetic Algorithm
+
+```ruby
+class TestArraySolution < Algorithms::GeneticAlgorithm::ArraySolution; def score; @data.sum; end end
+solution = TestArraySolution.new(Array.new(50, 0), possible_elements: (0..50).to_a)
+genetic_alg = Algorithms::GeneticAlgorithm.init([solution])
+genetic_alg.run(100)
+genetic_alg.best_solution.score
+```
+
 # Other useful links
 
 * https://github.com/kumar91gopi/Algorithms-and-Data-Structures-in-Ruby/
