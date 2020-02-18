@@ -5,7 +5,6 @@ class GeneticAlgorithmTest < Minitest::Test
 
   class TestBitsetSolution < BitsetSolution; def score; @data.cardinality; end end
 
-
   def test_bitset_solution
     solution = TestBitsetSolution.new(Bitset.new(8), mutate_change_rate: 0.6)
     genetic_alg = Algorithms::GeneticAlgorithm.init([solution])

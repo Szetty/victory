@@ -551,6 +551,7 @@ Thread-safe variables:
 
 * [Greedy](#greedy)
 * [Genetic Algorithm](#genetic)
+* [Simulated Annealing](#simulated-annealing)
 
 <a name="greedy" />
 
@@ -588,6 +589,34 @@ solution = TestArraySolution.new(Array.new(50, 0), possible_elements: (0..50).to
 genetic_alg = Algorithms::GeneticAlgorithm.init([solution])
 genetic_alg.run(100)
 genetic_alg.best_solution.score
+```
+
+<a name="simulated-annealing" />
+
+## Simulated Annealing
+
+```ruby
+class TestSolution
+    include Algorithms::SimulatedAnnealing::Solution
+    
+    def score
+      x1, x2 = *@data
+      0.2 + x1 * x1 + x2 * x2 - 0.1 * Math.cos(6 * Math::PI * x1) - 0.1 * Math.cos(6 * Math::PI * x2)
+    end
+    
+    def next_solution
+      x1, x2 = *@data
+      new_x1 = (x1 + rand * 2 - 1) / 2
+      new_x2 = (x2 + rand * 2 - 1) / 2
+      new_data = T[new_x1, new_x2]
+      TestSolution.new(new_data)
+    end
+end
+
+solution = TestSolution.new(T[-1, -1])
+sim_annealing = Algorithms::SimulatedAnnealing.init(solution)
+sim_annealing.run(1000)
+sim_annealing.best_solution
 ```
 
 # Other useful links
