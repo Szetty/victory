@@ -8,7 +8,7 @@ class SimulatedAnnealingTest < Minitest::Test
 
     def score
       x1, x2 = *@data
-      0.2 + x1 * x1 + x2 * x2 - 0.1 * Math.cos(6 * Math::PI * x1) - 0.1 * Math.cos(6 * Math::PI * x2)
+      -(0.2 + x1 * x1 + x2 * x2 - 0.1 * Math.cos(6 * Math::PI * x1) - 0.1 * Math.cos(6 * Math::PI * x2))
     end
 
     def next_solution
@@ -28,5 +28,6 @@ class SimulatedAnnealingTest < Minitest::Test
     assert best_solution.data[0] != -1
     assert best_solution.data[1] != -1
     assert best_solution.score < 2.0
+    p best_solution.score
   end
 end
