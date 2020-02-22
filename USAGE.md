@@ -18,6 +18,7 @@ For them to work you firstly need to require the library with `require 'victory'
 * [Bitset](#bitset)
 * [Graph](#graph)
 * [IOHelpers](#io-helpers)
+* [Descriptive Statistics](#descriptive-stats)
 * [Concurrent Structures](#concurrent)
 
 <a name="ranges" />
@@ -437,6 +438,54 @@ Writer.string(a, line_sep: '@', col_sep: '.')
 Writer.string(a, line_sep: "\n", col_sep: ' ', mapper: ->(x) {"0,#{x}"})
 # => "0,1 0,2 0,3\n0,4 0,5 0,6\n0,7 0,8 0,9" 
 Writer.file("b", a, line_sep: "\n", col_sep: ' ', mapper: ->x {"0,#{x}"}) 
+```
+
+<a name="descriptive_statistics" />
+
+## Descriptive Statistics
+
+From [descriptive_statistics](https://github.com/thirtysixthspan/descriptive_statistics):
+```ruby
+data = [2,6,9,3,5,1,8,3,6,9,2]
+# => [2, 6, 9, 3, 5, 1, 8, 3, 6, 9, 2]
+data.number
+# => 11.0
+data.sum
+# => 54.0
+data.mean
+# => 4.909090909090909
+data.median
+# => 5.0
+data.variance
+# => 7.7190082644628095
+data.standard_deviation
+# => 2.778310325442932
+data.percentile(30)
+# => 3.0
+data.percentile(70)
+# => 6.0
+data.percentile_rank(8)
+# => 81.81818181818183
+data.mode
+# => 2
+data.range
+# => 8
+data.descriptive_statistics
+=begin
+=> {:number=>11.0,
+  :sum=>54,
+  :variance=>7.7190082644628095,
+  :standard_deviation=>2.778310325442932,
+  :min=>1,
+  :max=>9,
+  :mean=>4.909090909090909,
+  :mode=>2,
+  :median=>5.0,
+  :range=>8.0,
+  :q1=>2.5,
+  :q2=>5.0,
+  :q3=>7.0}
+=end
 ```
 
 <a name="concurrent" />

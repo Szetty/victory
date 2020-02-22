@@ -33,6 +33,7 @@ require 'containers/xor_list'
 require 'io_helpers/reader'
 require 'io_helpers/writer'
 require 'include_rgl'
+require 'descriptive_statistics'
 
 require 'set'
 Containers::Set = Set
